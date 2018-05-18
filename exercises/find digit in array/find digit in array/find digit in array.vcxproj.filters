@@ -26,7 +26,7 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Zadatak s poljima 1.cpp">
+    <ClCompile Include="find digit in array.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
