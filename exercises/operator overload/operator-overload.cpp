@@ -11,6 +11,7 @@ struct position
 	int axisY;
 	int axisZ;
 	position(int X, int Y, int Z) : axisX(X), axisY(Y), axisZ(Z) {}
+
 	position operator+(position const &a)
 	{
 		axisX = axisX + a.axisX;
