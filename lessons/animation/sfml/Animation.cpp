@@ -24,11 +24,11 @@ void Animation::update(float deltaTime)
 	elapsedTime += deltaTime;
 	if (elapsedTime >= switchTime)
 	{
-		if (currentImage.x < imageCount.x)
+		if (currentImage.x < imageCount.x - 1)
 		{
 			currentImage.x++;
 		}
-		else if (currentImage.y < imageCount.y)
+		else if (currentImage.y < imageCount.y - 1)
 		{
 			currentImage.y++;
 			currentImage.x = 0;
