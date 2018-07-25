@@ -4,6 +4,8 @@
 
 System::System()
 {
+	input = 0;
+	graphics = 0;
 }
 
 System::System(const System& copy)
@@ -44,11 +46,11 @@ bool System::init()
 	}
 	else
 	{
-		screenHeight = 800;
-		screenWidth = 600;
+		screenWidth = 800;
+		screenHeight = 600;
 
-		positionX = GetSystemMetrics(SM_CXSCREEN) - screenWidth / 2;
-		positionY = GetSystemMetrics(SM_CYSCREEN) - screenHeight / 2;
+		positionX = (GetSystemMetrics(SM_CXSCREEN) - screenWidth) / 2;
+		positionY = (GetSystemMetrics(SM_CYSCREEN) - screenHeight) / 2;
 	}
 	hWindow = CreateWindowEx(WS_EX_APPWINDOW, applicationName, applicationName,
 		WS_CLIPCHILDREN | WS_CLIPSIBLINGS | WS_POPUP,
@@ -111,12 +113,12 @@ LRESULT CALLBACK System::messageHandler(HWND window, UINT msg, WPARAM wparam, LP
 	{
 	case WM_KEYDOWN:
 	{
-		input->keyDown(wparam);
+		input->keyDown((unsigned int)wparam);
 		return 0;
 	}
 	case WM_KEYUP:
 	{
-		input->keyUp(wparam);
+		input->keyUp((unsigned int)wparam);
 		return 0;
 	}
 	default:
@@ -127,7 +129,7 @@ LRESULT CALLBACK System::messageHandler(HWND window, UINT msg, WPARAM wparam, LP
 
 bool System::frame()
 {
-	return false;
+	return true;
 }
 
 void System::initWindow(int & width, int & height)
