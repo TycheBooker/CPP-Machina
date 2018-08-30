@@ -13,5 +13,13 @@ public:
 protected:	
 	void init();
 	sf::Thread thread;				// thread as a class member
+
+	sf::RenderWindow* window;
+	sf::Keyboard keyboard;
+	sf::Texture playerTexture;
+	sf::Texture backgroundTexture;
+	sf::Vector2f currentPlayerPosition;
+	sf::Vector2f minCameraPosition;
+	sf::Vector2f maxCameraPosition;
 };
 

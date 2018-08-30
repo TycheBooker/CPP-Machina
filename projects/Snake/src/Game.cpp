@@ -6,6 +6,9 @@ Game::Game() : m_window("Snake", sf::Vector2u(800, 600)),
 {
     m_clock.restart();
     srand(time(nullptr));
+
+	m_textbox.Setup(5, 14, 350, sf::Vector2f(225, 0));
+	m_elapsed = sf::Time::Zero;
 }
 
 Game::~Game()
@@ -52,6 +55,7 @@ void Game::update()
         m_elapsed -= timestep;
         if (m_snake.HasLost())
         {
+			m_textbox.Add("GAME OVER! Score: " + std::to_string((long long)m_snake.GetScore()));
             m_snake.Reset();
         }
     }
@@ -62,6 +66,7 @@ void Game::render()
     m_window.beginDraw();
     m_world.Render(*m_window.getRenderWindow());
     m_snake.Render(*m_window.getRenderWindow());
+	m_textbox.Render(*m_window.getRenderWindow());
     m_window.endDraw();
 }
 
@@ -73,9 +78,4 @@ sf::Time Game::getElapsed()
 void Game::restartClock()
 {
     m_elapsed += m_clock.restart();
-    float frametime = 1.f / 60.f;
-    if (m_elapsed.asSeconds() >= frametime)
-    {
-        m_elapsed -= sf::seconds(frametime);
-    }
 }

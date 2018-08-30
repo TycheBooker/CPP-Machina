@@ -1,5 +1,6 @@
 #pragma once
 #include "Window.h"
+#include "Textbox.h"
 #include "World.h"
 #include "Snake.h"
 
@@ -21,4 +22,5 @@ private:
 	sf::Time m_elapsed;
     World m_world;
     Snake m_snake;
+	Textbox m_textbox;
 };

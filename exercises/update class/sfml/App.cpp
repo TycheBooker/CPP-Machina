@@ -6,6 +6,7 @@
 App::App() :
 	thread(&App::init, this)			// svaka instanca klase imati æe thread za sebe
 {
+	window = new sf::RenderWindow(sf::VideoMode(800, 600), "Generic title", sf::Style::Close);
 }
 
 
@@ -15,13 +16,6 @@ App::~App()
 
 void App::init()
 {
-	sf::RenderWindow window(sf::VideoMode(800, 600), "Generic title", sf::Style::Close);
-	sf::Keyboard keyboard;
-	sf::Texture playerTexture;
-	sf::Texture backgroundTexture;
-	sf::Vector2f currentPlayerPosition;
-	sf::Vector2f minCameraPosition;
-	sf::Vector2f maxCameraPosition;
 
 	sf::View camera(sf::FloatRect(0.0f, 0.0f, 800, 600));
 
@@ -35,23 +29,23 @@ void App::init()
 
 	player.setPosition(sf::Vector2f(800.0f, 600.0f));
 
-	minCameraPosition.x = window.getSize().x / 2;
-	minCameraPosition.y = window.getSize().y / 2;
+	minCameraPosition.x = window->getSize().x / 2;
+	minCameraPosition.y = window->getSize().y / 2;
 	maxCameraPosition.x = background.getSize().x - minCameraPosition.x;
 	maxCameraPosition.y = background.getSize().y - minCameraPosition.y;
 
-	while (window.isOpen())
+	while (window->isOpen())
 	{
 		sf::Event windowEvent;
-		while (window.pollEvent(windowEvent))
+		while (window->pollEvent(windowEvent))
 		{
 			if (windowEvent.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 			{
-				window.close();
+				window->close();
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 			{
-				window.close();
+				window->close();
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 			{
@@ -92,11 +86,11 @@ void App::init()
 		{
 			camera.setCenter(currentPlayerPosition);
 		}
-		window.setView(camera);								// view setting
-		window.clear();
-		window.draw(background);
-		window.draw(player);
-		window.display();
+		window->setView(camera);								// view setting
+		window->clear();
+		window->draw(background);
+		window->draw(player);
+		window->display();
 	}
 }
 
